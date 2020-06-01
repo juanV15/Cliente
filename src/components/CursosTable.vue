@@ -28,19 +28,19 @@
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
-                      v-model="editedItem.claveCurso"
+                      v-model="editedItem.clave"
                       label="Clave"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
-                      v-model="editedItem.nombreCurso"
+                      v-model="editedItem.nombre"
                       label="Nombre del Curso"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
-                      v-model="editedItem.numeroCreditos"
+                      v-model="editedItem.creditos"
                       label="Número de Creditos"
                     ></v-text-field>
                   </v-col>
@@ -90,14 +90,14 @@ export default {
     cursos: [],
     editedIndex: -1,
     editedItem: {
-      claveCurso: "",
-      nombreCurso: "",
-      numeroCreditos: 0
+      clave: "",
+      nombre: "",
+      creditos: 0
     },
     defaultItem: {
       claveCurso: "",
-      nombreCurso: "",
-      numeroCreditos: 0
+      nombre: "",
+      creditos: 0
     },
   }),
 
@@ -144,7 +144,7 @@ export default {
 
       if (confirmacion) {
         await this.axios
-          .delete(`/cursos/${item.claveCurso}`)
+          .delete(`/cursos/${item.clave}`)
           .then((res) => {
             console.log(res.data);
           })
@@ -165,14 +165,14 @@ export default {
     async guardar() {
       if (this.editedIndex > -1) {
          const cursoModificar = {
-            clave: this.editedItem.claveCurso,
-            nombre: this.editedItem.nombreCurso,
-            creditos: this.editedItem.numeroCreditos
+            clave: this.editedItem.clave,
+            nombre: this.editedItem.nombre,
+            creditos: this.editedItem.creditos
           };
          
          await this.axios
            .put(
-             `/cursos/${this.editedItem.claveCurso}`,
+             `/cursos/${this.editedItem.clave}`,
              cursoModificar
            )
            .then((res) => {
